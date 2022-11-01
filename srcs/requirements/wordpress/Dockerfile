@@ -6,6 +6,7 @@ RUN	apt update && apt install -y	\
 	php$PHP_VERSION			\
 	php$PHP_VERSION-fpm		\
 	php$PHP_VERSION-mysqli		\
+	php$PHP_VERSION-redis		\
 	mariadb-client			\
 	sendmail			\
 	curl

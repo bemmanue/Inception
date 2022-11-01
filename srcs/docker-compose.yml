@@ -48,6 +48,16 @@ services:
     networks:
       - network
 
+  redis:
+    container_name: redis
+    build:
+      context: ./requirements/bonus/redis
+    networks:
+      - network
+    ports:
+      - 6379:6379
+    restart: always
+
 volumes:
   wp-volume:
   db-volume:
