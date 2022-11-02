@@ -30,6 +30,21 @@ wp core install --allow-root		\
 	--admin_password=$USER_PASSWORD	\
 	--admin_email=$USER_EMAIL
 
-echo "WordPress is installed!"
+# Install redis-cache
+wp plugin install redis-cache		\
+	--allow-root			\
+	--path=/var/www/wordpress	\
+	--activate
+
+# Configure wp-config.php for redis
+wp config set --allow-root --path=/var/www/wordpress --anchor="/**#@+" --separator="\n\n" WP_REDIS_HOST redis
+wp config set --allow-root --path=/var/www/wordpress --anchor="/**#@+" --separator="\n\n" --raw WP_REDIS_PORT 6379
+wp config set --allow-root --path=/var/www/wordpress --anchor="/**#@+" --separator="\n\n" --raw WP_REDIS_TIMEOUT 1
+wp config set --allow-root --path=/var/www/wordpress --anchor="/**#@+" --separator="\n\n" --raw WP_REDIS_READ_TIMEOUT 1
+wp config set --allow-root --path=/var/www/wordpress --anchor="/**#@+" --separator="\n\n" --raw WP_REDIS_DATABASE 0
+
+# Launch redis-cache
+wp redis enable --allow-root		\
+	--path=/var/www/wordpress
 
 exec "$@"
