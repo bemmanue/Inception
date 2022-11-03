@@ -3,6 +3,8 @@ FROM	debian:buster
 RUN	apt update &&		\
 	apt install -y vsftpd
 
-EXPOSE	21
+COPY	tools/entrypoint.sh /
 
-CMD ["tail", "-f"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
+
+CMD	["/usr/sbin/vsftpd", "/etc/vsftpd.conf"]
