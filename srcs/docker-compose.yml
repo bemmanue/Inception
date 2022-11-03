@@ -36,8 +36,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    build:
-      context: ./requirements/wordpress
+    build: ./requirements/wordpress
     env_file:
       - .env
     restart: always
@@ -50,13 +49,27 @@ services:
 
   redis:
     container_name: redis
-    build:
-      context: ./requirements/bonus/redis
+    build: ./requirements/bonus/redis
     networks:
       - network
     ports:
       - 6379:6379
     restart: always
+
+  ftp-server:
+    container_name: ftp-server
+    build: ./requirements/bonus/ftp-server
+    depends_on:
+      - wordpress
+    env_file:
+      - .env
+    networks:
+      - network
+    ports:
+      - 21:21
+    restart: always
+    volumes:
+      - wp-volume:/home/$FTP_USER/ftp
 
 volumes:
   wp-volume:
