@@ -9,12 +9,14 @@ cd /usr/share/adminer
 php compile.php
 
 # Create the apache adminer configuration file
-echo "Alias /adminer.php /usr/share/adminer/adminer-4.7.1.php" | tee /etc/apache2/conf-available/adminer.conf
+adminer=$(ls /usr/share/adminer | grep adminer-[0-9].[0-9].[0-9].php)
+echo "Alias /adminer.php /usr/share/adminer/$adminer" | tee /etc/apache2/conf-available/adminer.conf
 
 # Activate configuration
 cd /etc/apache2/conf-available/
 a2enconf adminer.conf
 
+# Reload apache webserver
 service apache2 reload
 
 exec "$@"
