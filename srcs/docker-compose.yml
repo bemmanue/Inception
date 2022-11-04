@@ -71,6 +71,17 @@ services:
     volumes:
       - wp-volume:/home/$FTP_USER/ftp
 
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    depends_on:
+      - mariadb
+    networks:
+      - network
+    restart: always
+    ports:
+      - 8080:8080
+
 volumes:
   wp-volume:
   db-volume:
