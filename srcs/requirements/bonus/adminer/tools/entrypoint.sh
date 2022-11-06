@@ -3,20 +3,21 @@
 # Configure apache to listen on port 8080
 sed -i "s/Listen 80/Listen 8080/" /etc/apache2/ports.conf
 sed -i "s/VirtualHost *:80/VirtualHost *:8080/" /etc/apache2/sites-enabled/000-default.conf
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Create adminer-X.X.X.php file
-cd /usr/share/adminer
-php compile.php
+# Adminer directory
+adm_dir=/var/www/html/adminer
 
-# Create the apache adminer configuration file
-adminer=$(ls /usr/share/adminer | grep adminer-[0-9].[0-9].[0-9].php)
-echo "Alias /adminer.php /usr/share/adminer/$adminer" | tee /etc/apache2/conf-available/adminer.conf
+# Create adminer directory
+mkdir -p $adm_dir
 
-# Activate configuration
-cd /etc/apache2/conf-available/
-a2enconf adminer.conf
+# Download adminer.php file
+wget https://github.com/vrana/adminer/releases/download/v4.7.3/adminer-4.7.3-mysql.php
 
-# Reload apache webserver
-service apache2 reload
+# Rename file
+mv ./adminer-4.7.3-mysql.php $adm_dir/index.php
+
+# Change permissions
+chmod +x $adm_dir/index.php
 
 exec "$@"

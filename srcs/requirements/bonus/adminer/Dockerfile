@@ -1,7 +1,7 @@
 FROM	debian:buster
 
-RUN	apt update &&		\
-	apt install -y adminer
+RUN	apt update &&			\
+	apt install -y wget adminer
 
 COPY	tools/entrypoint.sh /
 
