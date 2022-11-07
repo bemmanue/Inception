@@ -11,6 +11,7 @@ services:
       - wordpress
     ports:
       - 443:443
+      - 8090:8090
     volumes:
       - wp-volume:/var/www/wordpress
     restart: always

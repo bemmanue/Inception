@@ -1,0 +1,80 @@
+body {
+    background: rgb(0,24,255);
+    background: radial-gradient(circle, rgba(0,24,255,1) 0%, rgba(106,120,255,1) 15%, rgba(187,193,255,1) 30%, rgba(255,255,255,1) 50%);
+    background-size: auto;
+    height: 1000px;
+    min-width: 800px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Chonburi', cursive;
+    height: 50px;
+    justify-content: space-between;
+}
+main {
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Chonburi', cursive;
+    font-size: 15px;
+    height: 50px;
+    justify-content: space-between;
+    border-top: black solid 1px;
+}
+.title {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.link {
+    text-decoration: none;
+    color: black;
+}
+.menu_ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    width: 400px;
+}
+.name {
+    font-family: 'Chonburi', cursive;
+    font-size: 30px;
+}
+.spec {
+    font-family: 'Chonburi', cursive;
+    font-size: 50px;
+}
+.description {
+    font-family: 'Chonburi', cursive;
+    font-size: 15px;
+    width: 750px;
+}
+.contact_me {
+    background-color: black;
+    border: none;
+    color: white;
+    font-family: 'Chonburi', cursive;
+    font-size: 20px;
+    height: 50px;
+    text-transform: lowercase;
+    width: 200px;
+    border-radius: 25px;
+}
+button:hover {
+    background-color: #0018ff
+}
+.link:hover {
+    color: #0018ff
+}

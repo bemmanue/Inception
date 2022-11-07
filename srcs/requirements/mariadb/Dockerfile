@@ -5,16 +5,16 @@ ARG MYSQL_DATABASE
 ARG MYSQL_USER
 ARG MYSQL_PASSWORD
 
-ENV MYSQL_ROOT_PASSWORD=12345
-ENV MYSQL_DATABASE=wordpress
-ENV MYSQL_USER=bemmanue
-ENV MYSQL_PASSWORD=12345
+ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+ENV MYSQL_DATABASE=$MYSQL_DATABASE
+ENV MYSQL_USER=$MYSQL_USER
+ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
  
 RUN apt update && apt install -y mariadb-server
 
 COPY ./conf/50-server.cnf	/etc/mysql/mariadb.conf.d/
-COPY ./tools/initDB.sh		/
+COPY ./tools/init.sh		/
 
-RUN chmod +x initDB.sh && sh initDB.sh
+RUN chmod +x init.sh && sh init.sh
 
 ENTRYPOINT ["/usr/bin/mysqld_safe"]
