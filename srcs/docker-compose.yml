@@ -1,17 +1,15 @@
-version: '3'
+version: '3.3'
 
 services:
   nginx:
     container_name: nginx
-    build:
-      context: ./requirements/nginx
-      args:
-        - DOMAIN_NAME=$DOMAIN_NAME
+    build: ./requirements/nginx
     depends_on:
       - wordpress
+    env_file:
+      - .env
     ports:
       - 443:443
-      - 8090:8090
     volumes:
       - wp-volume:/var/www/wordpress
     restart: always
@@ -85,7 +83,17 @@ services:
 
 volumes:
   wp-volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/$USER/data/wordpress
   db-volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/$USER/data/mariadb
 
 networks:
   network:
