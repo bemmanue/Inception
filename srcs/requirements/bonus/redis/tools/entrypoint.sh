@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Start redis-server
 exec	redis-server			\
 	--daemonize no			\
 	--protected-mode no		\
