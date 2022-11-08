@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Edit config file by replacing 'domain_name' with the custom value
-sed -i "s/domain_name/$DOMAIN_NAME/" /etc/nginx/sites-available/wordpress.conf
+sed -i "s/domain_name/$DOMAIN_NAME/g" /etc/nginx/conf.d/wordpress.conf
 
 # Path to store ssl certificates
 certs=/etc/ssl/certs
