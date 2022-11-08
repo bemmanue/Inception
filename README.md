@@ -14,7 +14,7 @@ A high-performance WordPress deployment using Docker
 - A docker-network that establishes the connection between your containers.
 
 ### Setup and management:
-- Customize `srsc/.env` file by replacing values of variables to your own
+- Customize `srsc/.env` file by replacing values of the variables to your own
 - Use `make` command with options `up`, `down`, `clean` and `re` to manage containers
 
 ### Diagram
